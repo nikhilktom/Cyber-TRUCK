@@ -7,7 +7,7 @@ Source: https://sketchfab.com/3d-models/cyber-truck-1f5174e78fd549a8be8f7ae622ca
 Title: Cyber Truck
 */
 
-import React, { useRef,useLayoutEffect } from "react";
+import React, { useRef,useLayoutEffect,useState,useEffect } from "react";
 import { useGLTF,useScroll } from "@react-three/drei";
 import {useFrame} from '@react-three/fiber'
 import gsap from 'gsap'
@@ -17,6 +17,26 @@ export function Cyber_truck(props) {
    const truck =  useRef()
   const scroll = useScroll()
   const tl = useRef()
+  
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = () => {
+    const windowWidth = window.innerWidth;
+    setIsMobile(windowWidth < 768);
+  };
+
+  useEffect(() => {
+    // Call handleResize on initial mount
+    handleResize();
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
 
   useFrame((state, delta)=>{
     tl.current.seek(scroll.offset * tl.current.duration())
@@ -26,22 +46,22 @@ export function Cyber_truck(props) {
     tl.current = gsap.timeline({defaults: {duration: 2, ease: 'power1.inOut'}})
 
     tl.current
-    .to(truck.current.rotation, {y: -1}, 2)
-    .to(truck.current.position, {x: 1}, 2)
+    .to(truck.current.rotation, {y: -.7}, 2)
+    .to(truck.current.position, {x: 0.6}, 2)
 
-    .to(truck.current.rotation, {y: 1}, 6)
-    .to(truck.current.position, {x: -1}, 6)
+    .to(truck.current.rotation, {y: 0.9}, 6)
+    .to(truck.current.position, {x: 0.4}, 6)
 
     .to(truck.current.rotation, {y: 0}, 11)
-    .to(truck.current.rotation, {x: 1}, 11)
+    .to(truck.current.rotation, {x: 1.1}, 11)
     .to(truck.current.position, {x: 0}, 11)
 
     .to(truck.current.rotation, {y: 0}, 13)
-    .to(truck.current.rotation, {x: -1}, 13)
+    .to(truck.current.rotation, {x: 0.8}, 13)
     .to(truck.current.position, {x: 0}, 13)
 
     .to(truck.current.rotation, {y: 0}, 16)
-    .to(truck.current.rotation, {x: 0}, 16)
+    .to(truck.current.rotation, {x: 0.5}, 16)
     .to(truck.current.position, {x: 0}, 16)
 
     .to(truck.current.rotation, {y: 0}, 20)
@@ -52,7 +72,7 @@ export function Cyber_truck(props) {
 
   return (
     <group {...props} dispose={null} ref={truck}>
-      <group position={[-2.3, -0.5, 0]} rotation={[0,0,0]} scale={0.007}>
+      <group position={isMobile? [-1.1, -0.5, 0]:[-2.3, -0.5, 0]} rotation={[0,0,0]} scale={isMobile ? 0.003 : 0.007}>
         <group position={[0, 0, 0]}>
           <mesh
             geometry={nodes.updated_tire001_Tire_0.geometry}

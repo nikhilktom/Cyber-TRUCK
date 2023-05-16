@@ -53,20 +53,10 @@ function App() {
         <Environment preset="city" />
 
         <Scroll>
-        <Float
-            speed={0.1} // Animation speed, defaults to 1
-            rotationIntensity={0.2} // XYZ rotation intensity, defaults to 1
-            floatIntensity={8} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-            floatingRange={[-3,-4]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-          >
+  
 
-            <Tetrahedron scale={0.3} args={[4, 2]} receiveShadow>
-              <meshStandardMaterial
-        emissive="black"
-        specular="grey"
-        shininess={100} transparent opacity={0.5} color="black" />
-            </ Tetrahedron>
-          </Float>
+
+
         </Scroll>
         <Scroll html classsName="w-full flex items-center justify-center ">
 
@@ -84,7 +74,7 @@ function App() {
               </div>
               <br />
               <div>
-                <p className="hidden md:block text-3xl  text-slate-300 capitalize">
+                <p className="hidden xl:block text-3xl  text-slate-300 capitalize">
                 Experience the future of driving with the Cyber Truck. This sleek and powerful vehicle combines advanced technology with rugged durability to tackle any terrain. With its impressive range and versatile capabilities, the Cyber Truck is the ultimate driving machine for the modern adventurer.
                 </p>
               </div>
@@ -106,7 +96,7 @@ function App() {
               </div>
               <br />
               <div>
-                <p className="hidden md:block  text-slate-300 text-3xl capitalize">
+                <p className="hidden xl:block  text-slate-300 text-3xl capitalize">
                 ntroducing the future of rugged, sustainable transportation - the Cyber Truck. With its robust design and advanced technology, this vehicle is built to take on any challenge, from off-roading to long road trips. But it's not just tough - the Cyber Truck is also environmentally conscious, with its electric powertrain and sustainable materials. Get ready to experience the ultimate blend of strength and style on the road ahead
                 </p>
               </div>
