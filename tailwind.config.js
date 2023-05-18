@@ -12,9 +12,8 @@ export default defineConfig({
         raleway: ["Raleway", "sans-serif"],
         dirtchunk: ["DirtChunk", "sans-serif"],
       },
-      scale: {
-        '0.004': '0.004',
-        '0.007': '0.007',
+      animation: {
+        glitch: "glitch 1s infinite",
       },
     },
   },

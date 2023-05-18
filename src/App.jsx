@@ -1,26 +1,29 @@
 import {
   ScrollControls,
   Scroll,
-  Environment,
+
   Stars,
   Sparkles,
-  Backdrop,
-  Float,
-  Tetrahedron,
-
+ 
 
 } from "@react-three/drei";
 
 import { Cyber_truck } from "./components/Cyber_truck.jsx";
 import "./index.css";
-
+import tesla from "../public/assets/tesla.png";
 import Name from "../public/assets/name.png";
+import { useState } from "react";
 
 function App() {
+  const [selectedIcon, setSelectedIcon] = useState(null);
+
+  const handleIconClick = (iconId) => {
+    setSelectedIcon(iconId);
+  };
 
   return (
     <>
-      <ScrollControls pages={6} damping={0.1}>
+      <ScrollControls pages={5} damping={0.1}>
         <Stars
           radius={100}
           depth={500}
@@ -30,52 +33,84 @@ function App() {
           fade
           speed={1}
         />
-        <Sparkles size={1} color={"#ff"} scale={[10, 10, 10]}></Sparkles>
-        <Backdrop
-          receiveShadow
-          floor={20.5}
-          segments={100}
-          scale={[50, 30, 10]}
-          position={[4, -10, 0]}
-        >
-          <meshStandardMaterial color="#000000" />
-        </Backdrop>
+        <Sparkles size={1} color={"#aaa"} scale={[10, 10, 10]}></Sparkles>
 
-        <spotLight
-          intensity={3}
-          position={[-30, -6, 10]}
-          angle={0.2}
-          penumbra={1}
-          castShadow
-        />
+        <Cyber_truck selectedIcon={selectedIcon} />
+        <Scroll></Scroll>
+        <Scroll html>
+          <div className="h-screen flex flex-col justify-between items-center">
+            <div className="flex flex-col justify-center items-center mt-56 sm:mt-32">
+              <img
+                className="image scale-50 select-none"
+                src={Name}
+                alt="cyber truck"
+              />
+            </div>
 
-        <Cyber_truck />
-        <Environment preset="city" />
+            <div className="flex items-start justify-start font-dirtchunk flex-col w-1/5 h-1/5 select-none absolute top-0 left-0 mt-5 ">
+              <img
+                className="image scale-50 select-none"
+                src={tesla}
+                alt="tesla logo"
+              />
+            </div>
 
-        <Scroll>
-  
+            <div className="flex  justify-center space-x-4 mb-40 rounded-3xl border border-slate-500 p-2">
+              <div
+                className={`flex items-center justify-center rounded-full ${
+                  selectedIcon === 1 ? "border-2 border-slate-500" : ""
+                }`}
+                onClick={() => handleIconClick(1)}
+              >
+                <div className=" w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-gray-300 via-slate-400 to-slate-300"></div>
+              </div>
+              <div
+                className={`flex items-center justify-center rounded-full ${
+                  selectedIcon === 2 ? "border-2 border-slate-500" : ""
+                }`}
+                onClick={() => handleIconClick(2)}
+              >
+                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-red-900 via-rose-400 to-red-700"></div>
+              </div>
+              <div
+                className={`flex items-center justify-center rounded-full ${
+                  selectedIcon === 3 ? "border-2 border-slate-500" : ""
+                }`}
+                onClick={() => handleIconClick(3)}
+              >
+                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-lime-500 via-green-500 to-emerald-900"></div>
+              </div>
+              <div
+                className={`flex items-center justify-center rounded-full ${
+                  selectedIcon === 4 ? "border-2 border-slate-500" : ""
+                }`}
+                onClick={() => handleIconClick(4)}
+              >
+                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-300"></div>
+              </div>
 
+              <div
+                className={`flex items-center justify-center rounded-full ${
+                  selectedIcon === 5 ? "border-2 border-slate-500" : ""
+                }`}
+                onClick={() => handleIconClick(5)}
+              >
+                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-gray-700 to-black"></div>
+              </div>
+            </div>
+          </div>
 
-
-        </Scroll>
-        <Scroll html classsName="w-full flex items-center justify-center ">
-
-        <div className="h-screen flex items-center justify-center w-screen">
-  <div className="h-1/2 flex items-start justify-center w-1/2">
-    <img className="image" src={Name} alt="cyber truck" />
-  </div>
-</div>
-          <div className="flex items-start justify-center h-screen font-dirtchunk flex-col w-screen pl-7">
+          <div className="flex items-start justify-start h-screen font-dirtchunk flex-col w-screen pl-7 select-none">
             <div className="w-1/3">
               <div>
-                <h2 className="text-3xl md:text-7xl   text-white uppercase  mt-10">
-                Revolutionizing the future of transportation
+                <h2 className="text-2xl md:text-7xl   text-white uppercase  mt-10">
+                Unleash the Power of Innovation
                 </h2>
               </div>
               <br />
               <div>
                 <p className="hidden xl:block text-3xl  text-slate-300 capitalize">
-                Experience the future of driving with the Cyber Truck. This sleek and powerful vehicle combines advanced technology with rugged durability to tackle any terrain. With its impressive range and versatile capabilities, the Cyber Truck is the ultimate driving machine for the modern adventurer.
+                Experience the cutting-edge technology and unparalleled performance of the Cyber Truck. With its sleek design and advanced features, this revolutionary vehicle redefines the future of transportation. Whether you're conquering rugged terrains or cruising through city streets, the Cyber Truck delivers an unmatched driving experience.
                 </p>
               </div>
               <br />
@@ -87,17 +122,17 @@ function App() {
             </div>
           </div>
 
-          <div className="flex items-end justify-end h-screen font-dirtchunk flex-col w-screen pr-7">
+          <div className="flex items-end justify-end h-screen font-dirtchunk flex-col w-screen pr-7 select-none">
             <div className="w-1/3">
               <div className="   ">
-                <h2 className="text-3xl md:text-7xl text-white  uppercase  mt-10">
-                A Futuristic Blend of Innovation and Style
+                <h2 className="text-2xl md:text-7xl text-white  uppercase  mt-10">
+                Redefining Sustainable Mobility
                 </h2>
               </div>
               <br />
               <div>
                 <p className="hidden xl:block  text-slate-300 text-3xl capitalize">
-                ntroducing the future of rugged, sustainable transportation - the Cyber Truck. With its robust design and advanced technology, this vehicle is built to take on any challenge, from off-roading to long road trips. But it's not just tough - the Cyber Truck is also environmentally conscious, with its electric powertrain and sustainable materials. Get ready to experience the ultimate blend of strength and style on the road ahead
+                Discover the perfect blend of sustainability and style with the Cyber Truck. Designed with an eco-friendly mindset and powered by electric innovation, this vehicle is a symbol of responsible mobility. Experience the thrill of emission-free driving without compromising on performance or luxury.
                 </p>
               </div>
               <br />
@@ -109,19 +144,9 @@ function App() {
             </div>
           </div>
 
-          <div className="flex items-center justify-center h-screen font-dirtchunk flex-col w-screen pl-7">
-            {" "}
-            <h2 className="text-3xl md:text-7xl  text-white  uppercase  mt-10">
-              {" "}
-              Explore the Cutting-Edge of Technology
-            </h2>
-          </div>
-
-          <div className="flex items-center justify-center h-screen font-dirtchunk flex-col w-screen pl-7">
-            {" "}
-            <h2 className="text-3xl md:text-7xl  text-white  uppercase  mt-10">
-              {" "}
-              Embrace the Future
+          <div className="flex items-center justify-end h-screen font-dirtchunk flex-col w-screen pl-7 select-none">
+            <h2 className="text-3xl md:text-7xl text-white uppercase mt-10 animate-glitch">
+            Embrace the Future of Transportation
             </h2>
           </div>
 
