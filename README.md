@@ -1,6 +1,8 @@
 # Cyber Truck Landing Page
 
 "The Cyber Truck landing page is a visually stunning and interactive web page showcasing the futuristic and revolutionary Cyber Truck by Tesla. Experience the cutting-edge design and features of the Cyber Truck through a 3D interactive scene, where you can explore the vehicle from different angles and customise it according to your persional preferencs"
+
+live: https://cybertruck-project.netlify.app
 ## Table of Contents
 - [Installation](#installation)
 - [Screenshots](#screenshots)
